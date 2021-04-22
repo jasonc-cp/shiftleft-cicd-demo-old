@@ -54,9 +54,9 @@ jobs:
           chmod +x ./shiftleft
           ./shiftleft code-scan -s ./demo-app
           
-build-image:
-  runs-on: ubuntu-latest
-  steps:
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v2
       - name: Build container
         env: 

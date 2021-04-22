@@ -50,11 +50,11 @@ jobs:
           chmod +x ./shiftleft
           ./shiftleft image-scan -i myapp.tar
           
-    verify-infra:
-      runs-on: ubuntu-latest
-      steps:
-        -uses: actions/checkout@v2
-        -name: Check Terra
+  verify-infra:
+    runs-on: ubuntu-latest
+    steps:
+      -uses: actions/checkout@v2
+      -name: Check Terra
         env:
           CHKP_CLOUDGUARD_ID: ${{ secrets.CHKP_CLOUDGUARD_ID }}
           CHKP_CLOUDGUARD_SECRET: ${{secrets.CHKP_CLOUDGUARD_SECRET }}

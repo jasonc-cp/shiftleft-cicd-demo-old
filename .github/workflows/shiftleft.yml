@@ -51,12 +51,12 @@ jobs:
           CHKP_CLOUDGUARD_SECRET: ${{ secrets.CHKP_CLOUDGUARD_SECRET }}
         run: |
           git clone https://github.com/ilavender/demo-app
-          pwd
           chmod +x ./shiftleft
-          ./shiftleft code-scan -s .
+          ./shiftleft code-scan -s ./demo-app
           docker build -t chkp-username/myapp ./test-files/
           docker save -o myapp.tar chkp-username/myapp
           ./shiftleft image-scan -i myapp.tar
+          
         
         
           

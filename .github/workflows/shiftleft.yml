@@ -64,8 +64,8 @@ jobs:
           CHKP_CLOUDGUARD_SECRET: ${{ secrets.CHKP_CLOUDGUARD_SECRET }}
         run: |
           git clone https://github.com/ilavender/demo-app
-          docker build -t chkp-username/myapp ./test-files/
-          docker save -o myapp.tar chkp-username/myapp
+          docker build -t jasonc-cp/myapp ./test-files
+          docker save -o myapp.tar jasonc-cp/myapp
           chmod +x ./shiftleft
           ./shiftleft image-scan -i myapp.tar
           

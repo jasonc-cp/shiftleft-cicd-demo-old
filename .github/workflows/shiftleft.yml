@@ -45,5 +45,19 @@ jobs:
           ls -la
           netstat -an
           
+      - name: Run shiftleft scan
+         env:
+          CHKP_CLOUDGUARD_ID: ${{ secrets.CHKP_CLOUDGUARD_ID }}
+          CHKP_CLOUDGUARD_SECRET: ${{ secrets.CHKP_CLOUDGUARD_SECRET }}
+        run:
+          git clone https://github.com/ilavender/demo-app
+          chmod +x ./shiftleft
+          ./shiftleft code-scan -s .
+          docker build -t chkp-username/myapp ./test-files/
+          docker save -o myapp.tar chkp-username/myapp
+          ./shiftleft image-scan -i myapp.tar
+        
+        
+          
       
           

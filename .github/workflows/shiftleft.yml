@@ -33,7 +33,7 @@ jobs:
         run: |
           git clone https://github.com/ilavender/demo-app
           chmod +x ./shiftleft
-          ./shiftleft code-scan -s ./demo-app
+          ./shiftleft code-scan -sevt 4 -s ./demo-app
           
   build-image:
     runs-on: ubuntu-latest

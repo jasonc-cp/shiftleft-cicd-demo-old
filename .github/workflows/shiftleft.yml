@@ -31,7 +31,7 @@ jobs:
           CHKP_CLOUDGUARD_ID: ${{ secrets.CHKP_CLOUDGUARD_ID }}
           CHKP_CLOUDGUARD_SECRET: ${{ secrets.CHKP_CLOUDGUARD_SECRET }}
         run: |
-          git clone https://github.com/ilavender/demo-app
+          git clone https://github.com/chkp-rolandop/demo-app
           chmod +x ./shiftleft
           ./shiftleft code-scan -sevt 4 -s ./demo-app
           
@@ -44,11 +44,25 @@ jobs:
           CHKP_CLOUDGUARD_ID: ${{ secrets.CHKP_CLOUDGUARD_ID }}
           CHKP_CLOUDGUARD_SECRET: ${{ secrets.CHKP_CLOUDGUARD_SECRET }}
         run: |
-          git clone https://github.com/ilavender/demo-app
+          git clone https://github.com/chkp-rolandop/demo-app
           docker build -t jasonc-cp/myapp ./demo-app
           docker save -o myapp.tar jasonc-cp/myapp
           chmod +x ./shiftleft
           ./shiftleft image-scan -i myapp.tar
+          
+    verify-infra:
+      runs-on: ubuntu-latest
+      steps:
+        -uses: actions/checkout@v2
+        -name: Check Terra
+        env:
+          CHKP_CLOUDGUARD_ID: ${{ secrets.CHKP_CLOUDGUARD_ID }}
+          CHKP_CLOUDGUARD_SECRET: ${{secrets.CHKP_CLOUDGUARD_SECRET }}
+        run: |
+          git clone https://github.com/chkp-rolandop/demo-app
+          chmod +x ./shiftleft
+          ./shiftleft iac-assessment -r -64 -p ./demo-app/terraform-template
+          
           
           
           
